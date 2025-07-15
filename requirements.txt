@@ -1,0 +1,6 @@
+torch
+torchaudio
+whisper
+numpy
+scipy
+gitpython
