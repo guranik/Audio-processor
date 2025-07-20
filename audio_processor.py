@@ -10,7 +10,6 @@ from pathlib import Path
 import sys
 
 project_root = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(project_root)
 
 class AudioProcessor:
     def __init__(self):
@@ -54,13 +53,19 @@ class AudioProcessor:
             print(f"Не удалось сохранить веса модели в {path}: {e}")
 
     def load_whisper_model(self):
-        model_path = "/app/whisper-models/small.pt"
-        print(f"Loading Whisper model from {model_path}")
+        model_name = "small"  
+        model_dir = Path.cwd() / "whisper_models" 
+        model_dir.mkdir(exist_ok=True) 
+
+        print(f"Загружаем модель Whisper ({model_name})...")
         try:
-            return whisper.load_model(model_path, device="cpu")
+            model = whisper.load_model(model_name, download_root=str(model_dir))
+            print(f"Модель Whisper успешно загружена/загружена из кэша в: {model_dir}")
         except Exception as e:
-            print(f"Error loading Whisper model: {e}")
+            print(f"Ошибка при загрузке модели Whisper: {e}")
             raise
+        
+        return model
 
     def read_wav(self, file_path):
         waveform, sample_rate = torchaudio.load(file_path)
@@ -311,7 +316,7 @@ class AudioProcessor:
 
     def process_audio_file(self, input_file, output_dir="segments"):
         if input_file is None:
-            input_file = os.path.join(project_root, "input.wav")
+            input_file = os.path.join(project_root, "input/input.wav")
         if output_dir is None:
             output_dir = os.path.join(project_root, "segments")
 
@@ -410,7 +415,7 @@ if __name__ == "__main__":
     print("Программа для обнаружения морзянки и речи в аудиозаписях")
     
     processor = AudioProcessor()
-    input_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "input.wav")
+    input_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "input/input.wav")
 
     if os.path.exists(input_file):
         print(f"\nНайден входной файл: {input_file}")
