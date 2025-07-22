@@ -4,3 +4,4 @@ openai-whisper
 numpy
 scipy
 gitpython
+soundfile
