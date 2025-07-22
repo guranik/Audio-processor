@@ -37,6 +37,7 @@ wget -q https://openaipublic.azureedge.net/main/whisper/models/9ecf779972d90ba49
     -O whisper_models/small.pt
 
 mkdir -p ~/.cache/torch/hub
+
 git clone https://github.com/snakers4/silero-vad ~/.cache/torch/hub/snakers4_silero-vad_master
 
 mkdir -p input output
