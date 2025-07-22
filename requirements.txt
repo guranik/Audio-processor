@@ -1,6 +1,6 @@
 torch
 torchaudio
-whisper
+openai-whisper
 numpy
 scipy
 gitpython
