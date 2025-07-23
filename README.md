@@ -20,4 +20,6 @@ chmod +x setup_audio_processor.sh
 
 ./setup_audio_processor.sh
 
+source venv/bin/activate
+
 python audio_processor.py
