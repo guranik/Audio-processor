@@ -27,5 +27,3 @@ git clone https://github.com/snakers4/silero-vad ~/.cache/torch/hub/snakers4_sil
 mkdir -p input output
 
 cp input.wav input/
-
-python audio_processor.py
