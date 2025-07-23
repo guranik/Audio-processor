@@ -1,9 +1,5 @@
 #!/bin/bash
 
-git clone https://github.com/guranik/Audio-processor
-
-cd Audio-processor
-
 sudo apt-get update && sudo apt-get install -y \
     wget \
     ffmpeg \
